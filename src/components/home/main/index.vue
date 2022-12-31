@@ -16,7 +16,7 @@
       <template v-else-if="column.key === 'number'">
         {{ record.number }}
       </template>
-      <template v-else-if="column.key === 'action'"> 
+      <template v-else-if="column.key === 'action'" :> 
         <router-link to="'/commitMent/'+"><a-button></a-button></router-link>
       </template>
     </template>
@@ -28,7 +28,9 @@ export default {
   setup() {
     return {
       dataSource: [
-
+        {
+          
+        }
       ],
       columns: [
         {
