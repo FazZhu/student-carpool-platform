@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Cookies from 'js-cookie'
 
-
-
 const routes = [
   {
     path: '/',
@@ -16,20 +14,19 @@ const routes = [
     component: () => import('@/views/home'),
     redirect: '/home/main',
     children: [
-
       {
         path: 'about',
-        component: () => import('@/views/about'),
+        component: () => import('@/components/home/about'),
         meta: { needLogin: true }
       },
       {
         path: 'main',
-        component: () => import('@/views/main'),
+        component: () => import('@/components/home/main'),
         meta: { needLogin: true }
       },
       {
         path: 'user',
-        component: () => import('@/views/user'),
+        component: () => import('@/components/home/user'),
         meta: { needLogin: true }
       }
     ]
@@ -40,14 +37,18 @@ const routes = [
     component: () => import('@/views/login'),
     meta: { needLogin: false }
   },
-
+  {
+    name: 'createCommitment',
+    path: '/createCommitment',
+    component: () => import('@/views/createCommitment'),
+    meta: { needLogin: true }
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-// const useStore=userStore()
 router.beforeEach(async (to,from)=>{
 
   if(Cookies.get("HAS_LOGIN")=="false" && to.name!=='login'){

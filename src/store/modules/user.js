@@ -1,10 +1,9 @@
 import { defineStore } from "pinia";
 import { store } from "@/store";
-import { systemLogin,systemLogout } from "@/utils/api/system";
+import { systemLogin,systemLogout,systemUserDetail } from "@/utils/api/system";
 
 const InitUserInfo = {
     userId: "",
-    hasLogin: false,
 };
 
 export const userStore = defineStore('users', {
@@ -31,14 +30,14 @@ export const userStore = defineStore('users', {
                 throw new Error(res.msg)
             }
         },
-        // async getUserDetail() {
-        //     const res = await systemUserDetail()
-        //     if (res.code === 0) {
-        //         this.userDetail = res.data
-        //     } else {
-        //         throw new Error(res.msg)
-        //     }
-        // }
+        async getUserDetail() {
+            const res = await systemUserDetail()
+            if (res.code === 0) {
+                this.userDetail = res.data
+            } else {
+                throw new Error(res.msg)
+            }
+        }
     }
 })
 

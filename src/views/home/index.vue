@@ -7,7 +7,7 @@
           <router-link to="/home/main">首页</router-link>
         </a-menu-item>
         <a-menu-item key="2">
-          <router-link to="/home/about">发帖</router-link>
+          <router-link to="/home/about">你的拼车</router-link>
         </a-menu-item>
         <a-menu-item key="1">
           <router-link to="/home/user">账号</router-link>

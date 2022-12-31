@@ -7,6 +7,9 @@ export const systemLogout = ()=>{
     return request.post('/api/user/logout');
 }
 
+export const systemUserDetail=()=>{
+    return request.get('/api/user/detail')
+}
 // export const systemLogout = ()=>{
 //     return request.post('/user/logout');
 // }
