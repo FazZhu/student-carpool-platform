@@ -12,17 +12,14 @@
                         <a-form-item label="联系方式" :rules="[{ required: true, message: '请输入联系方式！' }]">
                             <a-input v-model:value="contact" />
                         </a-form-item>
-                        <a-form-item label="出发日期" :rules="[{ required: true, message: '请输入出发日期！' }]">
-                            <a-date-picker v-model:value="departureDay" />
-                        </a-form-item>
                         <a-form-item label="出发时间" :rules="[{ required: true, message: '请输入出发时间！' }]">
-                            <a-time-picker v-model:value="departureTime" format="HH:mm" />
+                            <a-input v-model:value="departureTime"/>
                         </a-form-item>
                         <a-form-item label="备注" :rules="[{ required: false }]">
                             <a-input v-model:value="tips" />
                         </a-form-item>
                         <a-form-item>
-                            <a-button type="primary" html-type="submit" @click="Submit">发起拼车</a-button>
+                            <a-button type="primary" html-type="submit" @click="submit()">发起拼车</a-button>
                         </a-form-item>
                     </a-form>
                 </a-card>
@@ -37,16 +34,16 @@
 
 <script setup>
 import { userStore } from "@/store/modules/user";
+import Cookie from "js-cookie";
 import { reactive, toRefs } from "vue";
 import { useRouter } from "vue-router";
 import { message } from 'ant-design-vue';
 import { commitmentSubmit } from "@/utils/api/commit";
-
+const router=useRouter();
 const useUserStore = userStore();
 const commitmentList = reactive({
-    initiatorID: useUserStore.$state.userDetail.userId,
+    initiatorID: Cookie.get('USERID'),
     destination:'',
-    departureDay:'',
     departureTime:'',
     tips:'',
     contact:'',
@@ -56,21 +53,19 @@ const { destination , departureTime, tips, contact,departureDay,}=toRefs(commitm
 
 
 const submit=async()=>{
-    const router=useRouter();
+    
     try{
-        commitmentSubmit({
+        await commitmentSubmit({
             initiatorID:commitmentList.initiatorID,
             destination:commitmentList.destination,
-            departureTime:commitmentList.departureDay+'-'+commitmentList.departureTime,
+            departureTime:commitmentList.departureTime,
             tips:commitmentList.tips,
             members:[{
                 userid:commitmentList.initiatorID,
                 contact:commitmentList.contact
             }]
         })
-
-
-        router.push('/home/main')
+        router.push('/home/main');
     }catch(err)
     {
         message.error(err.message);

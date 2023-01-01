@@ -43,6 +43,11 @@ const routes = [
     component: () => import('@/views/createCommitment'),
     meta: { needLogin: true }
   },
+  {
+    name:'commitDetail',
+    path:'/commitDetail/:id',
+    component:()=>import('@/views/commitmentDetail')
+  }
 ]
 
 const router = createRouter({
