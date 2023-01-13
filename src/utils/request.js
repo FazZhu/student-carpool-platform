@@ -13,7 +13,7 @@ const CODE = {
 const instance = axios.create({
     baseURL: host,
     timeout: 1000,
-    //withCredentials: true,
+    //  withCredentials: true,
 });
 
 instance.interceptors.request.use((config) => config);//axios设置请求拦截

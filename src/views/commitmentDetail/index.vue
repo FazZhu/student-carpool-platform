@@ -40,6 +40,7 @@ commitDetail.commitmentid=route.params.id
 const getCommitDetail=async ()=>{
     const res = await getCommitmentData({commitmentid:commitDetail.commitmentid});
     console.log(res.data)
+    commitDetail.initiatorID=res.data.initiatorID
     commitDetail.destination=res.data.destination;
     commitDetail.departureTime=res.data.departureTime;
     commitDetail.tips=res.data.tips;
@@ -105,7 +106,7 @@ const quitThisCommitment=async ()=>{
                             <p>当前人数：</p>
                             <p>{{ commitDetail.members.length }}/4</p>
                         </a-space>
-                        <a-table :columns="columns" :dataSource="commitDetail.members" />
+                        <a-table :columns="columns" :dataSource="commitDetail.members" v-if="isMember()"/>
                         
                         <a-space>
                             <a-input v-if="!isMember()" placeholder="你的联系方式" v-model:value="submitList.contact"/>

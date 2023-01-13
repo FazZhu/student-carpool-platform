@@ -14,53 +14,8 @@
         <router-link :to="'/commitDetail/' + record.key">查看详情</router-link>
       </template>
     </template>
-
   </a-table>
 </template>
-
-<!-- <script >
-import { getCommitments } from '@/utils/api/commit'
-import { message } from 'ant-design-vue'
-export default {
-  setup() {
-    const getData = async () => {
-      try {
-        const res = await getCommitments()
-        console.log(res.data);
-        datas = res.data
-      } catch (err) {
-        message.error(err.message)
-      }
-    }
-    getData()
-
-    return {
-      columns: [
-        {
-          title: '目的地',
-          dataIndex: 'destination'
-        },
-        {
-          title: '出发时间',
-          dataIndex: 'departureTime'
-        },
-        {
-          title: '人数',
-          dataIndex: 'members'
-        },
-        {
-          title: '操作',
-          dataIndex: 'action',
-        },
-
-      ],
-      dataSource:[]
-    }
-  },
-
-}
-</script> -->
-
 <script setup>
 import { getCommitments } from '@/utils/api/commit'
 import { message } from 'ant-design-vue'

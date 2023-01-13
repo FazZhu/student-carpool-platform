@@ -10,6 +10,3 @@ export const systemLogout = ()=>{
 export const systemUserDetail=()=>{
     return request.get('/api/user/detail')
 }
-// export const systemLogout = ()=>{
-//     return request.post('/user/logout');
-// }
